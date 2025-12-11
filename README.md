@@ -104,6 +104,7 @@ Tras haber desarrollado los servidores, base de datos y proxy solo faltan los co
 
 Hice un Dockerfile para cada uno de estos, con las imágenes especificadas en el primer apartado, con su configuración específica y los ficheros que contendrán cada contenedor.
 
+---
 
 ## ORQUESTA DE CONTENEDORES
 
