@@ -40,15 +40,28 @@ Una vez seleccione una opción y la envíe le mostrará un mensaje confirmando q
 
 Si decide meterse en la página de resultados podrá comprobar como va el recuento de votos con sus respectivos porcentajes entre la opción **Si** y **No**
 
+---
+
 ### Proxy Inverso
 
-Este proxy será el único entrypoint de los contenedores de chistes y el servidor de votación.
+Este proxy será el único entrypoint de los contenedores de chistes y el servidor de votación, exponiendo solamente el puerto 80.
 
 Aquí especifiqué el balance de carga entre las distintas réplicas bajo la misma url para la votación, especificando que contenedor tiene más carga. 
 
 Tanto para el servidor de chistes como para el de votación configure el proxy para que cuando le llegue una petición a una url específica redirija el contenedor adecuado
 
-<u>Configuración redireccionamiento</u>
+
+**Balance de Carga:**
+```
+    upstream encuestas-servers {
+        server encuesta-loadbalance1 weight=3 max_fails=3  fail_timeout=30s;
+        server encuesta-loadbalance2 weight=1 max_fails=3  fail_timeout=30s;
+        server encuesta-loadbalance3 weight=1 max_fails=3  fail_timeout=30s;
+    }
+```
+
+
+**Configuración redireccionamiento:**
 ```     
     server {
        listen 80;
@@ -67,8 +80,8 @@ Tanto para el servidor de chistes como para el de votación configure el proxy p
         location / {
             proxy_pass http://chiste;
         }
-
     }
-
 ```
+
+
 
