@@ -48,7 +48,9 @@ Aquí especifiqué el balance de carga entre las distintas réplicas bajo la mis
 
 Tanto para el servidor de chistes como para el de votación configure el proxy para que cuando le llegue una petición a una url específica redirija el contenedor adecuado
 
-```     server {
+<u>Configuración redireccionamiento</u>
+```     
+    server {
        listen 80;
        server_name www.freedomLinares.com;
 
