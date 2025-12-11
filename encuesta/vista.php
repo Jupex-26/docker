@@ -4,11 +4,11 @@ function getFormulario(){
     $html=<<<Formulario
     <form method='post' action='$action'>
     <label for="encuesta">¿Independizar
-    Linares de la provincia de Jaén?</label>
+    Linares de la provincia de Jaén?</label> <br>
     <label for="si">Si</label>
     <input type="radio" value="Si" name="opcion">
     <label for="no">No</label>
-    <input type="radio" value="No" name="opcion">
+    <input type="radio" value="No" name="opcion"><br>
     <button type="submit" name="accion" value="guardar">Enviar</button>
     </form>
 
