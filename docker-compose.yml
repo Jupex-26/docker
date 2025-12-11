@@ -1,0 +1,68 @@
+version: '3'
+
+services:
+  bd-votos:
+    build:
+      context: ./bd
+    container_name: bd-votos
+    ports:
+      - "3313:3306"
+    restart: always
+    networks:
+      - red_proxy
+    
+  chiste:
+    build:
+      context: ./chiste
+    container_name: chiste
+    networks:
+      - red_proxy
+
+
+  encuesta-loadbalance1:
+    build:
+      context: ./encuesta
+    container_name: encuesta1
+    depends_on:
+      - bd-votos
+    networks:
+      - red_proxy
+      
+
+  encuesta-loadbalance2:
+    build:
+      context: ./encuesta
+    container_name: encuesta2
+    depends_on:
+      - bd-votos
+    networks:
+      - red_proxy
+      
+
+  encuesta-loadbalance3:
+    build:
+      context: ./encuesta
+    container_name: encuesta3
+    depends_on:
+      - bd-votos
+    networks:
+      - red_proxy
+
+  nginx-proxy: 
+    build:
+      context: ./nginx
+    container_name: proxy
+    ports:
+      - "80:80" 
+    depends_on:
+      - encuesta-loadbalance1
+      - encuesta-loadbalance2
+      - encuesta-loadbalance3
+      - chiste
+    restart: always
+    networks:
+      - red_proxy
+
+networks:
+  red_proxy:
+    driver: bridge
