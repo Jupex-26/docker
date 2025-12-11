@@ -51,7 +51,9 @@ Una vez seleccione una opción y la envíe le mostrará un mensaje confirmando q
 Si decide meterse en la página de resultados podrá comprobar como va el recuento de votos con sus respectivos porcentajes entre la opción **"Si"** y **"No"**.
 
 **Importante**
-Para mostrar el correcto balance de carga incluí mostrar la IP del servidor
+
+Para mostrar el correcto balance de carga incluí mostrar la IP del servidor.
+
 ---
 
 ### Proxy Inverso
