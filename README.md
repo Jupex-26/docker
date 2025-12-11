@@ -8,6 +8,16 @@ Para el servidor de votación hay un contenedor de base de datos para persistir 
 
 ---
 
+## TECNOLOGÍAS USADAS
+
+Para los servidores use la versión php:8.2 y para la persistencia en la base de datos: mysql:8.0
+
+Las imagenes correspondientes de los contenedores son:
+* Servidor: php:8.2-apache
+* Base de Datos: mysql:8.0
+* Proxy: nginx:alpine
+
+---
 ## DESARROLLO
 
 ### Servidor de Chistes
@@ -92,5 +102,23 @@ Tanto para el servidor de chistes como para el de votación configuré el proxy 
 
 Tras haber desarrollado los servidores, base de datos y proxy solo faltan los contenedores y su red interna para poder conectarse entre ellos.
 
-Hice un Dockerfile para cada uno de estos con su configuración específica y los ficheros que contendrán cada contenedor.
-Tras hacer cada dockerfile hice un docker-compose.yml donde especifico cada servicio con su carpeta específica, asignandole además el nombre de contenedor, la red en común que van a usar y las dependencias necesarias.
+Hice un Dockerfile para cada uno de estos, con las imágenes especificadas en el primer apartado, con su configuración específica y los ficheros que contendrán cada contenedor.
+
+
+## ORQUESTA DE CONTENEDORES
+
+Tras hacer cada dockerfile hice un docker-compose.yml que se encargará de orquestar los contenedores donde especifico cada servicio con su carpeta específica, asignandole además el nombre de contenedor, la red en común que van a usar y las dependencias necesarias.
+
+Importante:
+* Dependencia: 
+```
+    depends_on: 
+        - bd-votos
+```
+
+* Red: 
+```
+    networks: 
+        red_proxy: 
+            driver: bridge
+```
