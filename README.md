@@ -25,3 +25,4 @@ Para el desarrollo hice las siguientes clases:
 * Vista encargada de mostrar lo que va a ver el cliente
 * Clase encargada de usar los métodos de las siguientes clases y gestionar las peticiones GET y POST 
 
+#### Funcionamiento
